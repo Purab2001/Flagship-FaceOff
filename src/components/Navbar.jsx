@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavLink } from 'react-router';
 import { MdShoppingCart, MdBookmarkAdd } from "react-icons/md";
+import { CartContext } from '../providers/Contexts';
 
 const Navbar = () => {
+    const {cart} = useContext(CartContext)
+    console.log(cart)
     return (
         <div className="navbar p-0 bg-base-100 shadow-sm px-8 md:px-12 lg:px-16">
             <div className="navbar-start">
@@ -15,7 +18,7 @@ const Navbar = () => {
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
                         <li><NavLink className={({ isActive }) => isActive ? 'text-indigo-600' : ''} to='/'>Home</NavLink></li>
                         <li><NavLink className={({ isActive }) => isActive ? 'text-indigo-600' : ''} to='/about'>About</NavLink></li>
-                        <li><NavLink className={({ isActive }) => isActive ? 'text-indigo-600' : ''} to='/cart'><MdShoppingCart size={20} /></NavLink></li>
+                        <li className='relative'><NavLink className={({ isActive }) => isActive ? 'text-indigo-600' : ''} to='/cart'><MdShoppingCart size={20} /><p>{cart.length}</p></NavLink></li>
                         <li><NavLink className={({ isActive }) => isActive ? 'text-indigo-600' : ''} to='/favorites'><MdBookmarkAdd size={20} /></NavLink></li>
                     </ul>
                 </div>
@@ -25,7 +28,7 @@ const Navbar = () => {
                 <ul className="menu menu-horizontal px-1 hidden lg:flex font-semibold">
                     <li><NavLink className={({isActive}) => isActive? 'text-indigo-600': ''} to='/'>Home</NavLink></li>
                     <li><NavLink className={({ isActive }) => isActive ? 'text-indigo-600' : ''} to='/about'>About</NavLink></li>
-                    <li><NavLink className={({ isActive }) => isActive ? 'text-indigo-600' : ''} to='/cart'><MdShoppingCart size={20} /></NavLink></li>
+                    <li className='relative'><NavLink className={({ isActive }) => isActive ? 'text-indigo-600' : ''} to='/cart'><MdShoppingCart size={20} /><p>{cart.length}</p></NavLink></li>
                     <li><NavLink className={({ isActive }) => isActive ? 'text-indigo-600' : ''} to='/favorites'><MdBookmarkAdd size={20} /></NavLink></li>
                 </ul>
             </div>

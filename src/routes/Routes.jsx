@@ -15,7 +15,8 @@ const router = createBrowserRouter([
             {
                 index: true,
                 Component: Home,
-                loader: () => fetch('phones.json'),
+                hydrateFallbackElement: <p>Loading, Please Wait...</p>,
+                loader: () => fetch('../phones.json'),
             },
             {
                 path: "/favorites",
@@ -26,8 +27,10 @@ const router = createBrowserRouter([
                 Component: About,
             },
             {
-                path: "/phone-details",
+                path: "/phone-details/:id",
                 Component: PhoneDetails,
+                hydrateFallbackElement: <p>Loading, Please Wait...</p>,
+                loader: () => fetch('../phones.json'),
             }
         ]
     },
